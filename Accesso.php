@@ -2,17 +2,23 @@
 
 echo '
 <form action="Accesso.php" method="get">
-login <input type="text" name="lname"><br><br>
-password <input type="password" name="fname"><br><br>
+login <input id="login" type="text" name="lname"><br><br>
+password <input id="password" type="password" name="fname"><br><br>
 <input type="submit" value="SALVA">
 </form>
 ';
-$righe=file('Accesso.txt');
 
-if($righe=="lname" && $righe=="fname"){
+$login=$_GET["lname"];
+$password=$_GET["fname"];
+$filename="Accesso.txt";
+$f=fopen($filename,"r");
+
+if(fgets($f)==$login && fgets($f)==$password){
     echo "login con successo";
 }
 else{
     echo "login fallito";
 }
+
+fclose($f);
 ?>
